@@ -1,0 +1,6 @@
+Leia e armazene o número que se deseja multiplicar por 9 como "Número Inicial"; #Entrada
+Aplique a operação de subtração sobre o "número inicial" por 1; #Processamento
+Aplique a operação de multiplicação por 10 sobre o resultado da operação passada e armazene o resultado como "resultado1"; #Processamento
+Aplique a operação de subtração sobre o número 10 pelo "número inicial" e armazene o resultado como "resultado2"; #Processamento
+Aplique a operação de adição sobre o "resultado1" e o "resultado2" e armazene o resultado como "resultado3"; #Processamento
+Apresente o "resultado3" e finalize o programa; #Saída
