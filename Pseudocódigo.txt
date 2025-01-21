@@ -1,0 +1,8 @@
+Início
+Leia "n"; #Entrada
+"A" = "n" - 1; #Processamento
+"B" = "A" * 10; #Processamento
+"C" = 10 - "n"; #Processamento
+"D" = "B" + "C"; #Processamento
+Imprima "D"; #Saída
+Fim
