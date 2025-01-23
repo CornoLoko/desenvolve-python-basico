@@ -1,0 +1,24 @@
+Microsoft Windows [versão 10.0.26100.2894]
+(c) Microsoft Corporation. Todos os direitos reservados.
+
+C:\Users\PDITA767>python
+Python 3.12.2 (tags/v3.12.2:6abddd9, Feb  6 2024, 21:26:36) [MSC v.1937 64 bit (AMD64)] on win32
+Type "help", "copyright", "credits" or "license" for more information.
+>>> print("Meu primeiro código")
+Meu primeiro código
+>>> x = 10
+>>> y = 5
+>>> print(x+1)
+11
+>>> print(y-2)
+3
+>>> print(y*x)
+50
+>>> print(x/y)
+2.0
+>>> Print("Olá)
+  File "<stdin>", line 1
+    Print("Olá)
+          ^
+SyntaxError: unterminated string literal (detected at line 1)
+>>>
