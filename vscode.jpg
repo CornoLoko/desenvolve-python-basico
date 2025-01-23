@@ -1,0 +1,13 @@
+PS C:\Users\PDITA767>  & 'c:\Program Files\Python312\python.exe' 'c:\Users\PDITA767\.vscode\extensions\ms-python.debugpy-2024.8.0-win32-x64\bundled\libs\debugpy\adapter/../..\debugpy\launcher' '51812' '--' 'c:\Users\PDITA767\x = 10.py'
+Meu primeiro código
+11
+3
+50
+2.0
+PS C:\Users\PDITA767> ^C
+PS C:\Users\PDITA767> 
+PS C:\Users\PDITA767>  c:; cd 'c:\Users\PDITA767'; & 'c:\Program Files\Python312\python.exe' 'c:\Users\PDITA767\.vscode\extensions\ms-python.debugpy-2024.8.0-win32-x64\bundled\libs\debugpy\adapter/../..\debugpy\launcher' '57681' '--' 'c:\Users\PDITA767\x = 10.py' 
+  File "c:\Users\PDITA767\x = 10.py", line 8
+    print("Olá)
+          ^
+SyntaxError: unterminated string literal (detected at line 8)
