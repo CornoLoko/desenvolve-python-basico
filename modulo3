@@ -1,0 +1,39 @@
+1-idade_juliana = int(input("Digite a idade de Juliana: "))
+idade_cris = int(input("Digite a idade de Cris: "))
+podem_entrar = idade_juliana > 17 and idade_cris > 17
+print(podem_entrar)
+
+2- idade_juliana = int(input("Digite a idade de Juliana: "))
+idade_cris = int(input("Digite a idade de Cris: "))
+pode_entrar = idade_juliana > 17 or idade_cris > 17
+print(pode_entrar)
+
+3- idade = int(input("Digite sua idade: "))
+jogou_3_jogos = input("Já jogou pelo menos 3 jogos de tabuleiro? (True/False) ").capitalize() == "True"
+vitorias = int(input("Quantos jogos já venceu? "))
+apto = 16 <= idade <= 18 and jogou_3_jogos and vitorias >= 1
+print("Apto para ingressar no clube de jogos de tabuleiro:", apto)
+
+4- classe = input("Escolha a classe (guerreiro, mago ou arqueiro): ").lower()
+forca = int(input("Digite os pontos de força (de 1 a 20): "))
+magia = int(input("Digite os pontos de magia (de 1 a 20): "))
+if classe == "guerreiro":
+    valido = forca >= 15 and magia <= 10
+elif classe == "mago":
+    valido = forca <= 10 and magia >= 15
+elif classe == "arqueiro":
+    valido = 5 < forca <= 15 and 5 < magia <= 15
+else:
+    valido = False
+print("Pontos de atributo consistentes com a classe escolhida:", valido)
+
+5- genero = input("Digite seu gênero (M ou F): ").upper()
+idade = int(input("Digite sua idade: "))
+tempo_servico = int(input("Digite seu tempo de serviço (em anos): "))
+pode_aposentar = (
+    (genero == "F" and idade > 60) or
+    (genero == "M" and idade > 65) or
+    (tempo_servico >= 30) or
+    (idade == 60 and tempo_servico >= 25)
+)
+print(pode_aposentar)
