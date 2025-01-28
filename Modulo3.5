@@ -1,0 +1,80 @@
+Q1- 1 = float(input("Digite o primeiro operando: "))
+operador = input("Digite o operador (+, -, *, /, **): ")
+n2 = float(input("Digite o segundo operando: "))
+if operador == '+':
+    resultado = n1 + n2
+    print(f"Resultado: {resultado}")
+elif operador == '-':
+    resultado = n1 - n2
+    print(f"Resultado: {resultado}")
+elif operador == '*':
+    resultado = n1 * n2
+    print(f"Resultado: {resultado}")
+elif operador == '/':
+    if n2 != 0:
+        resultado = n1 / n2
+        print(f"Resultado: {resultado}")
+    else:
+        print("Erro: Divisão por zero não é permitida!")
+elif operador == '**':
+    resultado = n1 ** n2
+    print(f"Resultado: {resultado}")
+else:
+    print("Erro: Operador inválido!")
+
+Q2- lado1 = float(input("Digite o comprimento do primeiro lado: "))
+lado2 = float(input("Digite o comprimento do segundo lado: "))
+lado3 = float(input("Digite o comprimento do terceiro lado: "))
+if lado1 == lado2 == lado3:
+    print("O triângulo é equilátero.")
+elif lado1 == lado2 or lado1 == lado3 or lado2 == lado3:
+    print("O triângulo é isósceles.")
+else:
+    print("O triângulo é escaleno.")
+
+Q3- pontuacao = float(input("Digite a pontuação do jogador: "))
+if pontuacao >= 90:
+    classificacao = "Excelente"
+elif pontuacao >= 80:
+    classificacao = "Bom"
+elif pontuacao >= 70:
+    classificacao = "Regular"
+else:
+    classificacao = "Insatisfatório"
+print(f"A classificação do jogador é: {classificacao}")
+
+4- valor_total = float(input("Digite o valor total da compra: R$ "))
+if valor_total >= 100:
+    desconto = 0.20  # Desconto de 20%
+elif valor_total >= 50:
+    desconto = 0.10  # Desconto de 10%
+else:
+    desconto = 0  # Nenhum desconto
+valor_desconto = valor_total * desconto
+valor_final = valor_total - valor_desconto
+print(f"Desconto: R$ {valor_desconto:.2f}")
+print(f"Valor final: R$ {valor_final:.2f}")
+
+5- usuarios_db = {
+    "admin": ("admin123", "Administrador"),
+    "usuario1": ("senha123", "Usuário Comum"),
+    "visitante1": ("guest2024", "Visitante")
+}
+def autenticar():
+    while True:
+        usuario = input("Digite seu nome de usuário: ")
+        if usuario.lower() == "sair":
+            print("Saindo do sistema...")
+            break
+        senha = input("Digite sua senha: ")
+        if usuario in usuarios_db:
+            senha_armazenada, nivel_acesso = usuarios_db[usuario]
+            
+            if senha == senha_armazenada:
+                print(f"Login bem-sucedido! Nível de Acesso: {nivel_acesso}")
+                break
+            else:
+                print("Erro: Senha inválida.")
+        else:
+            print("Erro: Usuário ou senha inválidos.")
+autenticar()
