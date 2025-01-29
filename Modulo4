@@ -1,0 +1,72 @@
+1- x = int(input())
+if x > 5:
+    print("Maior que 5")
+print("Fim")
+
+2- n = int(input())
+cont = 0
+while n > cont:
+    cont = cont + 1
+print("Fim")
+
+3- n1 = float(input("Digite a nota 1: "))
+n2 = float(input("Digite a nota 2: "))
+n3 = float(input("Digite a nota 3: "))
+m = (n1 + n2 + n3) / 3
+if m >= 60:
+    print("Aprovado")
+elif m >= 40:
+    print("Recuperação")
+else:
+    print("Reprovado")
+print("Fim")
+
+4- n = int(input("Digite n: "))
+maior = 0
+while n > 0:
+    x = int(input("Digite um valor: "))
+    if x > maior:
+        maior = x
+    n = n - 1
+print("Maior =", maior)
+
+5- N = int(input("Digite o número de respondentes: "))
+soma_idades = 0
+for i in range(N):
+    idade = int(input(f"Digite a idade do respondente {i+1}: "))
+    soma_idades += idade
+media_idades = soma_idades / N
+print("A média das idades é:", media_idades)
+
+6- (esse código foi mais complicado, então eu enchi de "#" para não me perder.)
+# Lê o número de experimentos
+N = int(input("Digite o número de experimentos: "))
+total_cobaias = 0
+total_sapos = 0
+total_ratos = 0
+total_coelhos = 0
+# Processa os experimentos
+for _ in range(N):
+    # Lê a quantidade de cobaias e o tipo
+    quantidade, tipo = input().split()
+    quantidade = int(quantidade)
+    # Atualiza os totais com base no tipo de cobaia
+    total_cobaias += quantidade
+    if tipo == 'S':
+        total_sapos += quantidade
+    elif tipo == 'R':
+        total_ratos += quantidade
+    elif tipo == 'C':
+        total_coelhos += quantidade
+# Calcula os percentuais
+percentual_sapos = (total_sapos / total_cobaias) * 100
+percentual_ratos = (total_ratos / total_cobaias) * 100
+percentual_coelhos = (total_coelhos / total_cobaias) * 100
+# Imprime os resultados
+print(f"Total de cobaias: {total_cobaias}")
+print(f"Total de sapos: {total_sapos}")
+print(f"Total de ratos: {total_ratos}")
+print(f"Total de coelhos: {total_coelhos}")
+print(f"Percentual de sapos: {percentual_sapos:.2f} %")
+print(f"Percentual de ratos: {percentual_ratos:.2f} %")
+print(f"Percentual de coelhos: {percentual_coelhos:.2f} %")
