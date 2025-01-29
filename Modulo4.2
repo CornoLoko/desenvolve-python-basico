@@ -1,0 +1,92 @@
+1- for i in range(10, 0, -1):
+    if i != 0:
+     print(i)
+
+2- n = int(input("Digite um número: "))
+soma = 0
+for i in range(1, n + 1):
+    soma += i
+print(f"A soma dos números de 1 a {n} é {soma}")
+
+3- soma = 0
+quantidade = 10
+print("Digite 10 números positivos:")
+for i in range(quantidade):
+    while True:
+        numero = int(input())
+        if numero >= 0:
+            soma += numero
+            break
+        else:
+            print("Por favor, digite um número positivo.")
+media = soma / quantidade
+print(f"A média dos valores digitados é {media:.2f}")
+
+4- N = int(input())
+vitorias = 0
+empates = 0
+derrotas = 0
+pontuacao = 0
+for _ in range(N):
+    g_galo = int(input())
+    g_adversario = int(input())
+    if g_galo > g_adversario:
+        vitorias += 1
+        pontuacao += 3
+    elif g_galo == g_adversario:
+        empates += 1
+        pontuacao += 1
+    else:
+        derrotas += 1
+print(f"Vitórias: {vitorias}")
+print(f"Empates: {empates}")
+print(f"Derrotas: {derrotas}")
+print(f"Pontuação: {pontuacao}")
+
+5- N = int(input())
+M = int(input())
+print(" ", end=" ")
+for i in range(1, M + 1):
+    print(i, end=" ")
+print()
+for linha in range(1, N + 1):
+    print(linha, end=" ")
+    for coluna in range(1, M + 1):
+        print("/", end=" ")
+    print()
+6- maior = None
+menor = None
+while True:
+    valor = int(input())
+    if valor == 0:
+        break
+    if maior is None or valor > maior:
+        maior = valor
+    if menor is None or valor < menor:
+        menor = valor
+print(f'Maior: {maior}')
+print(f'Menor: {menor}')
+7- produto = 1
+valores_positivos = False
+while True:
+    valor = int(input())
+    if valor == 0:
+        break
+    if valor > 0:
+        produto *= valor
+        valores_positivos = True
+if valores_positivos:
+    print(f'Produto: {produto}')
+else:
+    print('Produto: 0')
+8- resultado = int(input())
+while True:
+    operador = input().strip()
+    if operador == "Fim":
+        break
+    numero = int(input())
+    if operador == "+":
+        resultado += numero
+    elif operador == "-":
+        resultado -= numero
+print(resultado)
