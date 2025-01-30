@@ -1,0 +1,54 @@
+1- def main():
+    try:
+        num1 = float(input("Digite o primeiro número decimal: "))
+        num2 = float(input("Digite o segundo número decimal: "))
+        diferenca = round(abs(num1 - num2), 2)
+        print(f"A diferença absoluta entre os números é: {diferenca}")
+    except ValueError:
+        print("Por favor, insira valores numéricos válidos.")
+if __name__ == "__main__":
+    main()
+
+2- import random
+import math
+def main():
+    try:
+        entrada = input("Digite os números inteiros separados por vírgula: ")
+        numeros = [int(num.strip()) for num in entrada.split(",")]
+        resultado = math.sqrt(sum(numeros))
+        print(f"A raiz quadrada da soma dos números fornecidos é: {resultado:.2f}")
+    except ValueError:
+        print("Por favor, insira apenas números inteiros separados por vírgula.")
+if __name__ == "__main__":
+    main()
+
+3- import random
+def main():
+    numero_aleatorio = random.randint(1, 10)
+    print("Tente adivinhar o número entre 1 e 10!")
+    while True:
+        try:
+            palpite = int(input("Digite seu palpite: "))
+            if palpite < numero_aleatorio:
+                print("Muito baixo! Tente novamente.")
+            elif palpite > numero_aleatorio:
+                print("Muito alto! Tente novamente.")
+            else:
+                print("Parabéns! Você acertou o número.")
+                break
+        except ValueError:
+            print("Por favor, insira um número inteiro válido.")
+if __name__ == "__main__":
+    main()
+
+4- from datetime import datetime
+def main():
+    agora = datetime.now()
+    data_formatada = agora.strftime("%d/%m/%Y")
+    hora_formatada = agora.strftime("%H:%M")
+    print(f"Data: {data_formatada}")
+    print(f"Hora: {hora_formatada}")
+if __name__ == "__main__":
+    main()
+
+5- Já tentei de tudo, mas o comando não funciona no meu laptop.
