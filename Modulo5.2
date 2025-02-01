@@ -1,0 +1,106 @@
+1- def fatorial(n):
+    fat = 1
+    for i in range(1, n + 1):
+        fat *= i
+    return fat
+n = int(input("Digite um número inteiro: "))
+resultado = fatorial(n)
+print(f"O fatorial de {n} é {resultado}")
+
+2- def soma_quadrados(a, b):
+    return a**2 + b**2
+a = float(input("Digite o primeiro número: "))
+b = float(input("Digite o segundo número: "))
+resultado = soma_quadrados(a, b)
+print(f"A soma dos quadrados de {a} e {b} é {resultado}")
+
+3- def soma_digitos(n):
+    soma = 0
+    while n > 0:
+        soma += n % 10
+        n //= 10
+    return soma
+num = int(input("Digite um número inteiro: "))
+resultado = soma_digitos(num)
+print(f"A soma dos dígitos de {num} é {resultado}")
+
+4- def inverteValor(n):
+    invertido = 0
+    while n > 0:
+        invertido = invertido * 10 + (n % 10)
+        n //= 10
+    return invertido
+def verificaInverso(original, invertido):
+    return (original % 2) == (invertido % 2)
+num = int(input("Digite um número inteiro: "))
+invertido = inverteValor(num)
+resultado_verificacao = verificaInverso(num, invertido)
+print(f"O inverso de {num} é {invertido}")
+print(f"Os números são igualmente par ou ímpar? {resultado_verificacao}")
+
+5- import math
+def calcula_perimetro_triangulo(lado1, lado2, lado3):
+    return lado1 + lado2 + lado3
+def calcula_perimetro_circulo(raio):
+    return 2 * math.pi * raio
+def calcula_perimetro_retangulo(lado1, lado2=None):
+    if lado2 is None or lado2 == 0:
+        return 4 * lado1
+    return 2 * (lado1 + lado2)
+while True:
+    print("\n1 - Calcular perímetro triângulo")
+    print("2 - Calcular perímetro círculo")
+    print("3 - Calcular perímetro retângulo")
+    print("4 - Sair")
+    opcao = int(input("\nOpção: "))
+    if opcao == 1:
+        print("Digite os três lados do triângulo:")
+        a = int(input())
+        b = int(input())
+        c = int(input())
+        print(f"O perímetro é: {calcula_perimetro_triangulo(a, b, c)}")
+    elif opcao == 2:
+        raio = int(input("Digite o raio do círculo: "))
+        print(f"O perímetro é: {calcula_perimetro_circulo(raio):.2f}")
+    elif opcao == 3:
+        print("Informe os dois lados do retângulo. Se for um quadrado, digite 0 para o segundo valor:")
+        lado1 = int(input())
+        lado2 = int(input())
+        print(f"O perímetro é: {calcula_perimetro_retangulo(lado1, lado2)}")
+    elif opcao == 4:
+        print("Saindo...")
+        break
+    else:
+        print("Opção inválida! Tente novamente.")
+
+6- verificar_paridade = lambda x: "par" if x % 2 == 0 else "ímpar"
+print("Digite os valores que deseja verificar a paridade (digite 0 para finalizar a entrada de dados):")
+while True:
+    numero = int(input())
+    if numero == 0:
+        break
+
+    print(verificar_paridade(numero))
+
+    7- maior = lambda lista: max(lista)
+menor = lambda lista: min(lista)
+print("Opções: (1) maior ou (2) menor?")
+opcao = int(input("Opção: "))
+valores = []
+print("Digite os valores de entrada. Digite 0 para finalizar a entrada de valores.")
+while True:
+    valor = int(input())
+    if valor == 0:
+        break
+    valores.append(valor)
+if valores:
+    if opcao == 1:
+        resultado = maior(valores)
+        print(f"O maior valor é: {resultado}")
+    elif opcao == 2:
+        resultado = menor(valores)
+        print(f"O menor valor é: {resultado}")
+    else:
+        print("Opção inválida.")
+else:
+    print("Nenhum valor foi inserido.")
