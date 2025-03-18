@@ -1,0 +1,49 @@
+1-
+
+numeros = []
+print("Digite pelo menos 4 números inteiros (digite 'sair' para finalizar):")
+while True:
+    entrada = input()
+    if entrada.lower() == 'sair' and len(numeros) >= 4:
+        break
+    try:
+        numeros.append(int(entrada))
+    except ValueError:
+        print("Entrada inválida. Digite um número inteiro ou 'sair' para finalizar.")
+print("Lista original:", numeros)
+print("Os 3 primeiros elementos:", numeros[:3])
+print("Os 2 últimos elementos:", numeros[-2:])
+print("Lista invertida:", numeros[::-1])
+print("Elementos de índice par:", numeros[::2])
+print("Elementos de índice ímpar:", numeros[1::2])
+2-
+urls = []
+print("Digite os URLs (digite 'sair' para finalizar):")
+while True:
+    entrada = input()
+    if entrada.lower() == 'sair':
+        break
+    if entrada.startswith("www.") and entrada.endswith(".com"):
+        urls.append(entrada)
+    else:
+        print("Formato inválido. A URL deve começar com 'www.' e terminar com '.com'.")
+dominios = [url[4:-4] for url in urls]
+print("URLs:", urls)
+print("Domínios:", dominios)
+3-
+import random
+numeros = [random.randint(-10, 10) for _ in range(20)]
+print("Lista original:", numeros)
+max_negativos = 0
+melhor_inicio = 0
+
+tamanho = len(numeros)
+for i in range(tamanho):
+    for j in range(i + 1, tamanho + 1):
+        sublista = numeros[i:j]
+        qtd_negativos = sum(1 for num in sublista if num < 0)
+        if qtd_negativos > max_negativos:
+            max_negativos = qtd_negativos
+            melhor_inicio, melhor_fim = i, j
+del numeros[melhor_inicio:melhor_fim]
+print("Lista editada:", numeros)
