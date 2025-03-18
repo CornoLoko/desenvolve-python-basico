@@ -1,1 +1,28 @@
 1-
+pares = [x for x in range(20, 51, 2)]
+quadrados = [x**2 for x in [1, 2, 3, 4, 5, 6, 7, 8, 9]]
+divisiveis_por_7 = [x for x in range(1, 101) if x % 7 == 0]
+paridade = ["par" if x % 2 == 0 else "ímpar" for x in range(0, 30, 3)]
+print("Pares:", pares)
+print("Quadrados:", quadrados)
+print("Divisíveis por 7:", divisiveis_por_7)
+print("Paridade:", paridade)
+2-
+frase = input("Digite uma frase: ")
+vogais = "aeiouAEIOU"
+consoantes = "bcdfghjklmnpqrstvwxyzBCDFGHJKLMNPQRSTVWXYZ"
+lista_vogais = sorted([letra for letra in frase if letra in vogais])
+lista_consoantes = [letra for letra in frase if letra in consoantes]
+print("Vogais:", lista_vogais)
+print("Consoantes:", lista_consoantes)
+3-
+horas_trabalhadas = list(map(int, input("Digite as horas trabalhadas separadas por espaço: ").split()))
+ganho_por_hora = int(input("Digite o ganho por hora: "))
+hora_extra = int(input("Digite o valor da hora extra: "))
+pagamentos = [ganho_por_hora * min(hora, 40) + hora_extra * max(0, hora - 40) for hora in horas_trabalhadas]
+print("Pagamentos:", pagamentos)
+4-
+alunos = input("Digite os nomes dos alunos separados por espaço: ").split()
+notas = list(map(int, input("Digite as notas correspondentes separadas por espaço: ").split()))
+aprovados = [alunos[i] for i in range(len(notas)) if notas[i] >= 60]
+print("Aprovados:", aprovados)
