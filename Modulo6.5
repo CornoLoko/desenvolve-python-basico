@@ -3,3 +3,106 @@ import math
 raios = list(map(float, input("Digite os raios das circunferências separados por espaço: ").split()))
 areas = list(map(lambda r: round(math.pi * (r ** 2), 2), raios))
 print("Áreas das circunferências:", areas)
+2-
+def testa_equilatero(lados):
+    return lados[0] == lados[1] == lados[2]
+lados = input("Digite os lados dos triângulos (ex: 3,3,3 4,4,4 5,5,6): ")
+triangulos = [list(map(int, trio.split(','))) for trio in lados.split()]
+equilateros = list(filter(testa_equilatero, triangulos))
+print("Triângulos equiláteros:", equilateros)
+3-
+def ordena_por_comprimento(lista):
+    """Ordena a lista de strings do menor para o maior comprimento."""
+    return sorted(lista, key=lambda s: len(s))
+PALAVRAS = input("Digite as palavras separadas por espaço: ").split()
+ordenadas = ordena_por_comprimento(PALAVRAS)
+print("Palavras ordenadas por comprimento:", ordenadas)
+4-
+n = int(input("Digite o valor de n: "))
+matriz = [[i * j for j in range(n)] for i in range(n)]
+for linha in matriz:
+    print(linha)
+5-
+def pares_unicos(numeros, soma_objetivo):
+    numeros.sort()
+    vistos = set()
+    pares = set()
+    for num in numeros:
+        complemento = soma_objetivo - num
+        if complemento in vistos:
+            pares.add((min(num, complemento), max(num, complemento)))
+        vistos.add(num)
+    return list(pares)
+numeros = list(map(int, input("Digite os números separados por espaço: ").split()))
+soma_objetivo = int(input("Digite a soma desejada: "))
+resultado = pares_unicos(numeros, soma_objetivo)
+print("Pares únicos:", resultado)
+6-
+from collections import Counter
+def diferenca_listas(lista1, lista2):
+    contagem1 = Counter(lista1)
+    contagem2 = Counter(lista2)
+    diferenca = []
+    for num in contagem1:
+        if num in contagem2:
+            qtd = contagem1[num] - contagem2[num]
+            diferenca.extend([num] * qtd)
+        else:
+            diferenca.extend([num] * contagem1[num])
+    return diferenca
+def dividir_lista(lista, tamanho):
+    return [lista[i:i + tamanho] for i in range(0, len(lista), tamanho)]
+lista_original = list(map(int, input("Digite os elementos da lista original separados por espaço: ").split()))
+while True:
+    tamanho = int(input("Tamanho para divisão: "))
+    if tamanho == 0:
+        break
+    sublistas = dividir_lista(lista_original, tamanho)
+    print("Sublistas:", sublistas)
+lista1 = list(map(int, input("Digite os elementos da primeira lista separados por espaço: ").split()))
+lista2 = list(map(int, input("Digite os elementos da segunda lista separados por espaço: ").split()))
+dif = diferenca_listas(lista1, lista2)
+print("Diferença entre as listas:", dif)
+7-
+from collections import Counter
+def diferenca_listas(lista1, lista2):
+    contagem1 = Counter(lista1)
+    contagem2 = Counter(lista2)
+    diferenca = []
+            qtd = contagem1[num] - contagem2[num]
+    for num in contagem1:
+        if num in contagem2:
+            qtd = contagem1[num] - contagem2[num]
+            diferenca.extend([num] * qtd)
+        else:
+            diferenca.extend([num] * contagem1[num])
+    return diferenca
+lista1 = list(map(int, input("Digite os elementos da primeira lista separados por espaço: ").split()))
+lista2 = list(map(int, input("Digite os elementos da segunda lista separados por espaço: ").split()))
+dif = diferenca_listas(lista1, lista2)
+print("Diferença entre as listas:", dif)
+8-
+def avalia_tabuleiro(tabuleiro):
+    for i in range(3):
+
+        if tabuleiro[i][0] == tabuleiro[i][1] == tabuleiro[i][2] != ' ':
+            return tabuleiro[i][0]
+        if tabuleiro[0][i] == tabuleiro[1][i] == tabuleiro[2][i] != ' ':
+            return tabuleiro[0][i]
+    if tabuleiro[0][0] == tabuleiro[1][1] == tabuleiro[2][2] != ' ':
+        return tabuleiro[0][0]
+    if tabuleiro[0][2] == tabuleiro[1][1] == tabuleiro[2][0] != ' ':
+        return tabuleiro[0][2]
+    return "Empate"
+tabuleiro = []
+for i in range(3):
+    linha = input(f"Digite a {i+1}ª linha do tabuleiro (separando os elementos por espaço): ").split()
+    while len(linha) != 3 or any(x not in ['X', 'O', ' '] for x in linha):
+        print("Entrada inválida! A linha deve conter exatamente 3 elementos: 'X', 'O' ou ' '.")
+        linha = input(f"Digite a {i+1}ª linha do tabuleiro novamente (separando os elementos por espaço): ").split()
+    tabuleiro.append(linha)
+vencedor = avalia_tabuleiro(tabuleiro)
+if vencedor == "Empate":
+    print("O jogo terminou em empate!")
+else:
+    print(f"O vencedor é: {vencedor}")
