@@ -1,0 +1,92 @@
+1-
+nome = input("Digite seu nome: ")
+for i in range(1, len(nome) + 1):
+    print(nome[:i])
+2-
+primeiro_nome = input("Digite seu primeiro nome: ")
+sobrenome = input("Digite seu sobrenome: ")
+print(f"Bem-vinda, {primeiro_nome} {sobrenome}!")
+
+3-
+frase = input("Digite a frase: ")
+espacos = frase.count(' ')
+print(f"Espaços em branco: {espacos}")
+
+4-
+numero = input("Digite o número: ")
+if len(numero) == 8:
+    numero = '9' + numero
+elif len(numero) == 9:
+    if numero[0] != '9':
+        print("O número de 9 dígitos não começa com 9. Encerrando o programa.")
+        exit()
+numero_formatado = numero[:5] + '-' + numero[5:]
+print(f"Número completo: {numero_formatado}")
+
+5-
+frase = input("Digite uma frase: ")
+indices_vogais = []
+vogais = "aeiouAEIOU"  # Inclui maiúsculas também
+for i, letra in enumerate(frase):
+    if letra in vogais:
+        indices_vogais.append(i)
+print(f"{len(indices_vogais)} vogais")
+print(f"Índices {indices_vogais}")
+
+6-
+frase = input("Digite uma frase: ")
+palavra_objetivo = input("Digite a palavra objetivo: ")
+def normalizar(palavra):
+    return sorted(palavra.lower())
+normal_objetivo = normalizar(palavra_objetivo)
+palavras = frase.split()
+anagramas = []
+for palavra in palavras:
+    palavra_limpa = ''.join([c for c in palavra if c.isalnum()])
+    if normalizar(palavra_limpa) == normal_objetivo:
+        anagramas.append(palavra)
+print(f"Anagramas: {anagramas}")
+
+7-
+import random
+def encrypt(lista_nomes):
+    chave = random.randint(1, 10)
+    nomes_criptografados = []
+    LIMITE_MIN = 33
+    LIMITE_MAX = 126
+    INTERVALO = LIMITE_MAX - LIMITE_MIN + 1
+    for nome in lista_nomes:
+        nome_cript = ""
+        for c in nome:
+            codigo = ord(c)
+            novo_codigo = ((codigo - LIMITE_MIN + chave) % INTERVALO) + LIMITE_MIN
+            nome_cript += chr(novo_codigo)
+        nomes_criptografados.append(nome_cript)
+    return chave, nomes_criptografados
+nomes = ["Luana", "Ju", "Davi", "Vivi", "Pri", "Luiz]()
+
+8-
+def calcular_digito(cpf, multiplicadores):
+    soma = sum(int(digito) * mult for digito, mult in zip(cpf, multiplicadores))
+    resto = soma % 11
+    if resto < 2:
+        return 0
+    else:
+        return 11 - resto
+def validar_cpf(cpf_str):
+    cpf_limpo = cpf_str.replace('.', '').replace('-', '')
+    if len(cpf_limpo) != 11 or not cpf_limpo.isdigit():
+        return False
+    cpf_nove = cpf_limpo[:9]
+    digitos_verificadores = cpf_limpo[9:]
+    multiplicadores_1 = list(range(10, 1, -1))
+    digito1 = calcular_digito(cpf_nove, multiplicadores_1)
+    cpf_dez = cpf_nove + str(digito1)
+    multiplicadores_2 = list(range(11, 1, -1))
+    digito2 = calcular_digito(cpf_dez, multiplicadores_2)
+    return digitos_verificadores == f"{digito1}{digito2}"
+cpf_input = input("Digite o CPF (XXX.XXX.XXX-XX): ")
+if validar_cpf(cpf_input):
+    print("Válido")
+else:
+    print("Inválido")
