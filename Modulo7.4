@@ -1,0 +1,102 @@
+1-
+import os
+frase = input("Digite uma frase: ")
+caminho = os.path.abspath("frase.txt")
+with open("frase.txt", "w", encoding="utf-8") as f:
+    f.write(frase)
+print(f"Frase salva em {caminho}")
+
+2-
+import re
+with open("frase.txt", "r", encoding="utf-8") as f:
+    texto = f.read()
+palavras = re.findall(r'\b[a-zA-ZáéíóúâêîôûãõçÁÉÍÓÚÂÊÎÔÛÃÕÇ]+\b', texto)
+with open("palavras.txt", "w", encoding="utf-8") as f:
+    for palavra in palavras:
+        f.write(palavra + "\n")
+with open("palavras.txt", "r", encoding="utf-8") as f:
+    print(f.read())
+3-
+import re
+with open("estomago.txt", "r", encoding="utf-8") as f:
+    linhas = f.readlines()
+print("Primeiras 25 linhas:\n")
+print("".join(linhas[:25]))
+print(f"\nNúmero de linhas: {len(linhas)}")
+linha_maior = max(linhas, key=len)
+print(f"\nLinha com mais caracteres:\n{linha_maior.strip()}")
+texto = "".join(linhas)
+nonato = len(re.findall(r'\bnonato\b', texto, re.IGNORECASE))
+iria = len(re.findall(r'\bíria\b', texto, re.IGNORECASE))
+print(f"\nMenções a Nonato: {nonato}")
+print(f"Menções a Íria: {iria}")
+
+4-
+import random
+def imprime_enforcado(erros):
+    with open("gabarito_enforcado.txt", "r", encoding="utf-8") as f:
+        estagios = f.read().split("\n\n")
+        print(estagios[erros])
+with open("gabarito_forca.txt", "r", encoding="utf-8") as f:
+    palavras = [linha.strip().lower() for linha in f if linha.strip()]
+palavra = random.choice(palavras)
+progresso = ["_"] * len(palavra)
+tentativas = 6
+erros = 0
+letras_tentadas = set()
+while erros < tentativas and "_" in progresso:
+    print("\nPalavra:", " ".join(progresso))
+    letra = input("Digite uma letra: ").lower()
+    if letra in letras_tentadas:
+        print("Você já tentou essa letra.")
+        continue
+    letras_tentadas.add(letra)
+    if letra in palavra:
+        for i, l in enumerate(palavra):
+            if l == letra:
+                progresso[i] = letra
+    else:
+        erros += 1
+        imprime_enforcado(erros)
+if "_" not in progresso:
+    print(f"Parabéns! A palavra era '{palavra}'")
+else:
+    print(f"Você perdeu. A palavra era '{palavra}'")
+5-
+livros = [
+    ["O Caçador de Pipas", "Khaled Hosseini", 2003, 368],
+    ["Torto Arado", "Itamar Vieira Junior", 2019, 264],
+    ["Dom Casmurro", "Machado de Assis", 1899, 256],
+    ["1984", "George Orwell", 1949, 328],
+    ["A Revolução dos Bichos", "George Orwell", 1945, 112],
+    ["Capitães da Areia", "Jorge Amado", 1937, 256],
+    ["O Pequeno Príncipe", "Antoine de Saint-Exupéry", 1943, 96],
+    ["Grande Sertão: Veredas", "João Guimarães Rosa", 1956, 624],
+    ["A Hora da Estrela", "Clarice Lispector", 1977, 96],
+    ["Harry Potter e a Pedra Filosofal", "J.K. Rowling", 1997, 223]
+]
+with open("meus_livros.csv", "w", encoding="utf-8") as f:
+    f.write("Título,Autor,Ano de publicação,Número de páginas\n")
+    for livro in livros:
+        f.write(f"{livro[0]},{livro[1]},{livro[2]},{livro[3]}\n")
+6-
+import csv
+musicas_por_ano = {}
+with open("spotify-2023.csv", "r", encoding="latin-1") as f:
+    leitor = csv.DictReader(f)
+    for linha in leitor:
+        try:
+            ano = int(linha["released_year"])
+            if 2012 <= ano <= 2022:
+                if '"' in linha["track_name"] or '"' in linha["artist(s)_name"]:
+                    continue
+                nome = linha["track_name"]
+                artista = linha["artist(s)_name"]
+                streams = int(linha["streams"])
+                if ano not in musicas_por_ano or streams > musicas_por_ano[ano][3]:
+                    musicas_por_ano[ano] = [nome, artista, ano, streams]
+        except Exception as e:
+            continue
+mais_tocadas = [musicas_por_ano[ano] for ano in sorted(musicas_por_ano)]
+for musica in mais_tocadas:
+    print(musica)
