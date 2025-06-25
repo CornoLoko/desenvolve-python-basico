@@ -1,0 +1,55 @@
+1-
+def calcula_area_perimetro(dimensoes):
+    largura, comprimento = dimensoes
+    area = largura * comprimento
+    perimetro = 2 * (largura + comprimento)
+    return area, perimetro
+largura = float(input("Digite a largura do terreno: "))
+comprimento = float(input("Digite o comprimento do terreno: "))
+area, perimetro = calcula_area_perimetro((largura, comprimento))
+print(f"Área: {area}")
+print(f"Perímetro: {perimetro}")
+2-
+texto = input("Digite uma string: ")
+vogais = "aeiouAEIOU"
+for i, letra in enumerate(texto):
+    if letra in vogais:
+        print(f"Vogal '{letra}' encontrada no índice {i}")
+3-
+def ordenar_tuplas():
+    alunos = []
+    quantidade = int(input("Quantos alunos deseja cadastrar? "))
+    for _ in range(quantidade):
+        nome = input("Nome do aluno: ")
+        media = float(input(f"Média de {nome}: "))
+        alunos.append((nome, media))
+    alunos_ordenados = sorted(alunos, key=lambda x: x[1], reverse=True)
+    print("\nLista de alunos ordenada por média (decrescente):")
+    for nome, media in alunos_ordenados:
+        print(f"{nome}: {media}")
+    return alunos_ordenados
+ordenar_tuplas()
+4-
+def comprimir_tuplas(lista):
+    resultado = {}
+    for palavra, numero in lista:
+        if palavra in resultado:
+            resultado[palavra] += numero
+        else:
+            resultado[palavra] = numero
+    return list(resultado.items())
+5-
+def fila_balada():
+    fila = []
+    quantidade = int(input("Quantas pessoas estão na fila da balada? "))
+    for _ in range(quantidade):
+        nome = input("Nome: ")
+        idade = int(input("Idade: "))
+        fila.append((nome, idade))
+    menores = tuple([nome for nome, idade in fila if idade < 18])
+    maiores = tuple([nome for nome, idade in fila if idade >= 18])
+    print("\nMenores de idade (não podem entrar):")
+    print(menores)
+    print("\nMaiores de idade (entrada permitida):")
+    print(maiores)
+fila_balada()
