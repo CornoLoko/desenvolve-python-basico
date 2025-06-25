@@ -1,0 +1,52 @@
+1-
+frase = "O rato roeu a roupa do Robson"
+caracteres_unicos = sorted(set(frase.lower()))
+caracteres_sem_espaco = [c for c in caracteres_unicos if c != '']
+print(caracteres_sem_espaco)
+['a', 'b', 'd', 'e', 'n', 'o', 'p', 'r', 's', 't', 'u']
+2-
+def tem_elementos_comuns(lista1, lista2):
+    return bool(set(lista1) & set(lista2))  # Interseção não vazia
+lista1 = [1, 2, 3, 4]
+lista2 = [3, 4, 5, 6, 7]
+resultado = tem_elementos_comuns(lista1, lista2)
+print(resultado)  # Saída esperada: True
+3-
+turmas = [
+     {'ações comunitárias', 'futebol', 'música', 'rugby'},
+     {'ações comunitárias', 'música', 'rugby', 'teatro'},
+     {'música', 'rugby', 'teatro', 'vôlei'},
+     {'música', 'vôlei', 'rugby'},
+     {'ações comunitárias', 'futebol', 'rugby', 'teatro', 'vôlei'},
+     {'ações comunitárias', 'futebol', 'rugby'},
+     {'ações comunitárias', 'rugby', 'teatro', 'vôlei'},
+     {'ações comunitárias', 'rugby', 'teatro', 'vôlei'},
+     {'ações comunitárias', 'rugby', 'vôlei'}
+]
+comuns = set.intersection(*turmas)
+print(comuns)  # Saída esperada: {'rugby'}
+4-
+A = [1, 4, 5, 7, 9]
+B = [4, 5, 7, 9]
+set_a = set(A)
+set_b = set(B)
+if set_a > set_b:
+    diferente = list(set_a - set_b)[0]
+    print(f"O elemento {diferente} está faltando na segunda lista")
+elif set_b > set_a:
+    diferente = list(set_b - set_a)[0]
+    print(f"O elemento {diferente} está faltando na primeira lista")
+else:
+    print("As listas têm os mesmos elementos.")
+O elemento 1 está faltando na segunda lista
+5-
+import string
+def checa_panagrama(frase):
+    alfabeto = set(string.ascii_lowercase)
+    letras_frase = set(frase.lower())
+    if alfabeto.issubset(letras_frase):
+        print("É um panagrama")
+    else:
+        print("Não é um panagrama")
+frase_usuario = input("Digite uma frase: ")
+checa_panagrama(frase_usuario)
