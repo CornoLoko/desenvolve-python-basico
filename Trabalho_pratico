@@ -1,0 +1,253 @@
+Nome da empresa:TechFix
+Área da empresa: Venda de hardwares.
+Nome do Sistema:
+TechFix Manager
+
+ Usuários
+Categorias:
+Gerente → acesso total
+Funcionário → acesso limitado (não pode remover usuários nem acessar todos os cadastros)
+
+Informações:
+id
+nome
+login
+senha
+cargo (gerente/funcionário)
+
+Armazenamento:
+Arquivo usuarios.csv
+
+Produtos/Serviços
+Armazenamento:
+Arquivo itens.csv
+Cada item pode ser do tipo:
+produto (ex: mouse, HD externo)
+serviço (ex: formatação, troca de tela)
+
+Informações:
+id
+nome
+tipo (produto ou serviço)
+preço
+quantidade (apenas para produtos)
+
+ Estrutura de Arquivos:
+usuarios.csv
+itens.csv
+
+ Funcionalidades CRUD
+Usuários (com verificação de permissão):
+Create: Adicionar novo usuário
+Read: Listar usuários (só gerente)
+Update: Alterar informações do usuário
+Delete: Remover usuário (só gerente)
+Produtos/Serviços:
+Create: Adicionar novo item
+Read: Listar todos, buscar por nome ou código
+Update: Alterar preço/quantidade
+Delete: Remover item
+
+ Extras:
+Ordenar por nome
+Ordenar por preço
+
+ Conceitos obrigatórios usados:
+Funções para cada operação
+Estruturas condicionais para permissões
+Loops para menus
+Strings para manipular entradas e nomes
+Listas/dicionários para estrutura de dados
+Leitura/escrita de arquivos CSV
+
+ Código:
+import csv
+import os
+USERS_FILE = "usuarios.csv"
+ITEMS_FILE = "itens.csv"
+def load_users():
+    users = []
+    if os.path.exists(USERS_FILE):
+        with open(USERS_FILE, newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                users.append(row)
+    return users
+def save_users(users):
+    with open(USERS_FILE, 'w', newline='') as csvfile:
+        fieldnames = ['id', 'nome', 'login', 'senha', 'cargo']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(users)
+def load_items():
+    items = []
+    if os.path.exists(ITEMS_FILE):
+        with open(ITEMS_FILE, newline='') as csvfile:
+            reader = csv.DictReader(csvfile)
+            for row in reader:
+                row['preco'] = float(row['preco'])
+                row['quantidade'] = int(row['quantidade'])
+                items.append(row)
+    return items
+def save_items(items):
+    with open(ITEMS_FILE, 'w', newline='') as csvfile:
+        fieldnames = ['id', 'nome', 'tipo', 'preco', 'quantidade']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writeheader()
+        writer.writerows(items)
+def login(users):
+    print("\n🔐 LOGIN")
+    login = input("Login: ")
+    senha = input("Senha: ")
+    for user in users:
+        if user['login'] == login and user['senha'] == senha:
+            print(f"\n✅ Bem-vindo(a), {user['nome']}! Cargo: {user['cargo']}")
+            return user
+    print("❌ Login inválido!")
+    return None
+def create_user(users):
+    print("\n👤 CADASTRO DE USUÁRIO")
+    new_user = {
+        'id': str(len(users) + 1),
+        'nome': input("Nome: "),
+        'login': input("Login: "),
+        'senha': input("Senha: "),
+        'cargo': input("Cargo (gerente/funcionario): ").lower()
+    }
+    users.append(new_user)
+    save_users(users)
+    print("✅ Usuário criado com sucesso!")
+def list_users(users):
+    print("\n📋 LISTA DE USUÁRIOS")
+    for u in users:
+        print(f"{u['id']} - {u['nome']} ({u['cargo']})")
+def update_user(users):
+    uid = input("ID do usuário a editar: ")
+    for user in users:
+        if user['id'] == uid:
+            user['nome'] = input("Novo nome: ") or user['nome']
+            user['senha'] = input("Nova senha: ") or user['senha']
+            save_users(users)
+            print("✅ Usuário atualizado.")
+            return
+    print("❌ Usuário não encontrado.")
+def delete_user(users):
+    uid = input("ID do usuário a remover: ")
+    for user in users:
+        if user['id'] == uid:
+            users.remove(user)
+            save_users(users)
+            print("✅ Usuário removido.")
+            return
+    print("❌ Usuário não encontrado.")
+def create_item(items):
+    print("\n➕ NOVO ITEM")
+    item = {
+        'id': str(len(items) + 1),
+        'nome': input("Nome: "),
+        'tipo': input("Tipo (produto/servico): ").lower(),
+        'preco': float(input("Preço: ")),
+        'quantidade': int(input("Quantidade (0 se for serviço): "))
+    }
+    items.append(item)
+    save_items(items)
+    print("✅ Item cadastrado!")
+def list_items(items):
+    print("\n📦 ITENS DISPONÍVEIS")
+    for i in items:
+        print(f"{i['id']} - {i['nome']} | {i['tipo']} | R${i['preco']} | Qtde: {i['quantidade']}")
+def update_item(items):
+    iid = input("ID do item: ")
+    for item in items:
+        if item['id'] == iid:
+            item['preco'] = float(input("Novo preço: ") or item['preco'])
+            item['quantidade'] = int(input("Nova quantidade: ") or item['quantidade'])
+            save_items(items)
+            print("✅ Item atualizado.")
+            return
+    print("❌ Item não encontrado.")
+def delete_item(items):
+    iid = input("ID do item: ")
+    for item in items:
+        if item['id'] == iid:
+            items.remove(item)
+            save_items(items)
+            print("✅ Item removido.")
+            return
+    print("❌ Item não encontrado.")
+def search_item(items):
+    termo = input("Buscar por nome: ").lower()
+    for item in items:
+        if termo in item['nome'].lower():
+            print(f"{item['id']} - {item['nome']} | R${item['preco']} | Qtde: {item['quantidade']}")
+def sort_by_name(items):
+    print("\n📚 ORDENADOS POR NOME")
+    for i in sorted(items, key=lambda x: x['nome'].lower()):
+        print(f"{i['nome']} - R${i['preco']}")
+def sort_by_price(items):
+    print("\n💰 ORDENADOS POR PREÇO")
+    for i in sorted(items, key=lambda x: x['preco']):
+        print(f"{i['nome']} - R${i['preco']}")
+def main():
+    users = load_users()
+    items = load_items()
+    if not users:
+        print("Nenhum usuário cadastrado. Criando gerente inicial...")
+        users.append({
+            'id': '1',
+            'nome': 'Admin',
+            'login': 'admin',
+            'senha': 'admin',
+            'cargo': 'gerente'
+        })
+        save_users(users)
+    user = None
+    while not user:
+        user = login(users)
+    while True:
+        print("\n=== MENU ===")
+        print("1. Cadastrar item")
+        print("2. Listar itens")
+        print("3. Atualizar item")
+        print("4. Remover item")
+        print("5. Buscar item")
+        print("6. Ordenar por nome")
+        print("7. Ordenar por preço")
+        if user['cargo'] == 'gerente':
+            print("8. Gerenciar usuários")
+        print("0. Sair")
+        op = input("Opção: ")
+        if op == "1":
+            create_item(items)
+        elif op == "2":
+            list_items(items)
+        elif op == "3":
+            update_item(items)
+        elif op == "4":
+            delete_item(items)
+        elif op == "5":
+            search_item(items)
+        elif op == "6":
+            sort_by_name(items)
+        elif op == "7":
+            sort_by_price(items)
+        elif op == "8" and user['cargo'] == 'gerente':
+            print("\n=== USUÁRIOS ===")
+            print("1. Criar usuário")
+            print("2. Listar usuários")
+            print("3. Editar usuário")
+            print("4. Remover usuário")
+            uop = input("Escolha: ")
+            if uop == "1":
+                create_user(users)
+            elif uop == "2":
+                list_users(users)
+            elif uop == "3":
+                update_user(users)
+            elif uop == "4":
+                delete_user(users)
+        elif op == "0":
+            break
+        else:
+            print("❌ Opção inválida!")
+main()
