@@ -1,0 +1,53 @@
+1-
+def contagem_caracteres(texto):
+    contagem = {}
+    for caractere in texto:
+        if caractere in contagem:
+            contagem[caractere] += 1
+        else:
+            contagem[caractere] = 1
+    return contagem
+2-
+from collections import defaultdict
+def contar_palavras_arquivo(nome_arquivo):
+    contagem = defaultdict(int)
+    try:
+        with open(nome_arquivo, 'r', encoding='utf-8') as arquivo:
+            for linha in arquivo:
+                palavras = linha.lower().split()
+                for palavra in palavras:
+                    palavra = ''.join(char for char in palavra if char.isalnum())
+                    if palavra:
+                        contagem[palavra] += 1
+        contagem_ordenada = dict(sorted(contagem.items(), key=lambda item: item[1], reverse=True))
+        return contagem_ordenada
+    except FileNotFoundError:
+        print(f"Arquivo '{nome_arquivo}' não encontrado.")
+        return {}
+resultado = contar_palavras_arquivo("estomago.txt")
+for palavra, frequencia in resultado.items():
+    print(f"{palavra}: {frequencia}")
+3-
+def mesclar_dicionarios(dict1, dict2):
+    resultado = dict1.copy()
+    for chave, valor in dict2.items():
+        if chave in resultado:
+            resultado[chave] = max(resultado[chave], valor)
+        else:
+            resultado[chave] = valor
+    return resultado
+4-
+def filtrar_dicionario(dicionario, chaves):
+    return {chave: dicionario[chave] for chave in chaves if chave in dicionario} #Exercicio mais facil do curso
+5-
+def resultado_votacao(lista_de_votos):
+    contagem = {}
+    for sessao in lista_de_votos:
+        for candidato, votos in sessao.items():
+            contagem[candidato] = contagem.get(candidato, 0) + votos
+    total_geral = sum(contagem.values())
+    resultado = {}
+    for candidato, total in contagem.items():
+        percentual = (total / total_geral) * 100 if total_geral > 0 else 0
+        resultado[candidato] = (total, percentual)
+    return resultado
